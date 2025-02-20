@@ -1,0 +1,71 @@
+body{
+    background-image: url("../image/tennis.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+.divForm{
+    width: 90%;
+    margin: auto;
+    height: auto;
+    border-radius: 50px;
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #d1d4d7;
+}
+form{
+    width: 100%;
+    margin: 90px auto;
+}
+label, input, p, button{
+    display: block;
+    margin: 10px auto;
+    width: 80%;
+}
+input, button{
+    height: 2.5em;
+    border-radius: 5px;
+    border: 1px solid #655e80;
+    font-family: Sahel ,sans-serif;
+}
+input[type="submit"], button{
+    width: 8rem;
+    margin: 40px auto;
+    background-color: #ffc344;
+    color: #2d2944;
+    height: 2.5em;
+    font-size: medium;
+    border: none;
+    box-shadow: 0 0 2px #2d2944;
+    transition: all 0.25s;
+}
+input[type="submit"]:hover, button:hover{
+    background-color: #e29f0d;
+    color: #2d2944;
+}
+
+a{
+    text-decoration: underline;
+    color: #89bcff ;
+}
+input[type="checkbox"] {
+    all: unset;
+    appearance: checkbox;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
+
+
+
+
+
+@media screen and (min-width:760px){
+    .divForm{
+        width: 50%;
+    }
+    input, label, p{
+        width: 60%;
+    }
+}

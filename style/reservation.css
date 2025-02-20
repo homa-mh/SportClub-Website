@@ -1,0 +1,85 @@
+table{
+    margin: auto;
+    width: 65%;
+    border: 0.1px solid black;
+    border-spacing: 0;
+    text-align: center;
+    background-color: #dfd8d8;
+    border-collapse: collapse;
+}
+td, th{
+    border: 0.1px solid black;
+    margin: auto;
+}
+th{
+    background-color: #2d2944;
+    color: #d1d4d7;
+    padding: 10px;
+}
+tr:nth-child(even){
+    background-color: #c1c1c1;
+}
+
+button{
+    font-family: 'sahel';
+    border: none;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: rgb(192, 235, 194);
+}
+button:hover{
+    background-color: rgb(214, 255, 127);
+}
+button:disabled{
+    background-color: #dfd8d8;
+
+}
+a{
+    text-decoration: none;
+}
+
+
+/* confirm page */
+.body{
+    width: 100%;
+    min-height: 100vh;
+    background-color: #2d2944;
+}
+.divConfirm{
+    display: block;
+    margin: auto;
+    width: 70%;
+    background-color: aliceblue;
+    padding: 20px;
+    border-radius: 50px;
+}
+.divConfirm p{
+    text-align: center;
+}
+#btnPay{
+    width: 12em;
+    margin: auto;
+    display: block;
+    border-radius: 10px;
+    background-color: #397a2d;
+    color: white;
+    transition: all 0.2s;
+}
+#btnPay:hover{
+    background-color: #529c45;
+}
+
+@media screen and (max-width:900px){
+    table{
+        width: 85%;
+    }
+}
+@media screen and (max-width:600px){
+    table{
+        width: 95%;
+    }
+    .main{
+        overflow-x: auto;
+    }
+}

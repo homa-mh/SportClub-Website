@@ -1,0 +1,77 @@
+.divPic, .divPic2{
+    background-image: url("../image/basket.jpg");
+    min-height: 100vh;
+    max-height: 100vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+
+.divPic2{
+    background-image: url("../image/weightLift.jpg");
+    min-height: 30vh;
+    max-height: 30vh;
+    margin: 50px auto 100px;
+}
+
+.divInfo{
+    margin: auto;
+    width: 40%;
+    min-height: 400px;
+    overflow: hidden;
+    text-align: justify;
+}
+.divInfo p{
+    text-indent: 1em;
+}
+
+
+
+@media screen and (max-width:950px){
+    #content2{
+        flex-direction: column;
+    }
+    #content2 .divInfo{
+        width: 70%;
+    }
+    .divInfo .carousel{
+        width: 80%;
+        margin: auto;
+    }
+}
+@media screen and (max-width:650px){
+    .content{
+        flex-direction: column;
+    }
+    .divInfo{
+        width: 70%;
+        margin: auto;
+    }
+    .divInfo .carousel{
+        width: 90%;
+        margin: auto;
+    }
+}
+@media screen and (max-width:450px){
+    .divInfo .carousel{
+        width: 100%;
+    } 
+    .divInfo{
+        width: 90%;
+        margin-top: 100px;
+    }
+    .divPic2{
+        margin-bottom: 0;
+    }
+    #content2 .divInfo{
+        width: 90%;
+    }
+    .header h2{
+        font-size: 25px;
+    }
+}
+
+
+

@@ -1,0 +1,33 @@
+.divTable{
+    width: 45%;
+}
+.header ~ h2{
+    margin-top: 120px;
+}
+table{
+    width: 100%;
+    border: 1px solid #2d2944;
+    border-spacing: 0;
+    text-align: center;
+}
+th,td{
+    border: 1px solid #2d2944;
+    padding: 5px;
+}
+tr:nth-child(even){
+    background-color: #c1c1c1;
+}
+h2{
+    padding-right: 20px;
+}
+
+@media screen and (max-width:770px) {
+    .content{
+        flex-direction: column;
+        gap: 50px;
+    }
+    .divTable{
+        width: 90%;
+        margin: auto;
+    }
+}

@@ -1,0 +1,47 @@
+.divSelectFields{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    width: 95%;
+    margin: auto;
+    height: auto;
+    justify-content: start;
+   
+}
+
+.divField{
+    min-width: 150px;
+    height: 90px;
+    background-color: #2d2944;
+    color: #d1d4d7;
+    border-radius: 10px;
+    margin: 10px;
+    transition: background-color 0.35s;
+}
+.divField:hover{
+    background-color: #f83a26;
+    color: #2d2944;
+}
+.divField p{
+    text-align: center;
+    padding: 10px;
+    vertical-align: middle;
+}
+.divSportInfo{
+    width: 95%;
+    margin: 100px auto 200px;
+    padding: 10px;
+    text-align: justify;
+}
+
+
+
+@media screen and (max-width:450px){
+    h1{
+        font-size: 25px;
+    }
+    .divField{
+        min-width: 100px;
+    }
+}
