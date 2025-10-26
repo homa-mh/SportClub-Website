@@ -1,22 +1,3 @@
-<?php
-$connection = mysqli_connect("localhost", "root", "");
-if (!$connection){
-    $errorMessage = urldecode("متاسفیم. ارتباط برقرار نشد");
-    header("Location: index.php?error=$errorMessage");
-    exit();
-}
-$sqlDBExists = "show databases like 'sport_club2'";
-$result = mysqli_query($connection, $sqlDBExists);
-if ($result && mysqli_num_rows($result) == 0) {
-    header("Location: createDB.php");
-    exit();
-}
-
-
-?>
-
-
-
 <!DOCTYPE html>
 <html lang="fa-ir">
 <head>
@@ -24,8 +5,8 @@ if ($result && mysqli_num_rows($result) == 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ورود</title>
     <link rel="icon" href="image/favIcon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="style/base.css">
-    <link rel="stylesheet" href="style/login.css">
+    <link rel="stylesheet" href="../style/base.css">
+    <link rel="stylesheet" href="../style/login.css">
 </head>
 <body dir="rtl">
     <div class="divForm">
