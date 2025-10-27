@@ -9,7 +9,7 @@ require_once "../app/session_config.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>باشگاه ورزشی</title>
     <script src="https://kit.fontawesome.com/067f2c805d.js" crossorigin="anonymous"></script>
-    <link rel="icon" href="image/favIcon.ico" type="image/x-icon">
+    <link rel="icon" href="../image/favIcon.ico" type="image/x-icon">
      <!-- BootStrap Links-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -18,18 +18,17 @@ require_once "../app/session_config.php";
     <link rel="stylesheet" href="../style/index.css">
 </head>
 <body>
-    <?php
-    require_once "includes/menu.php";
+<?php
+require_once "includes/menu.php";
 
-    ?>
+?>
     
     <div class="divPic"></div>
         <p id="error" style="padding:20px 0 0;">
-            <?php
-                if(!empty($_GET['error'])){
-                    echo ($_GET['error']);
-                }
-            ?>
+                <?php
+                    isset($_SESSION['error']) ? $_SESSION['error'] : "";
+                    unset($_SESSION['error']);
+                ?>
         </p>
         <h1 style="text-align: center; margin-top: 100px;">باشگاه ورزشی</h1>
         <hr>

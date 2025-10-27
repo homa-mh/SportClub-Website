@@ -9,68 +9,97 @@ class LoginController{
         $this->model = new LoginModel();
     }
 
-    public function send_code($user_name): bool{
+    public function pass_check($user_name, $password): bool{
+
         if(empty($user_name)){
             $_SESSION['error'] = "لطفا تلفن همراه خود را وارد کنید.";
             return false;
         }
-        
-        $user = $this->model->get_user($user_name);
-            if(preg_match('/^09\d{9}$/', $user_name)){
-                $this->model->add_user($user_name);
-            }else{
-                $_SESSION['error'] = "تلفن همراه وارد شده اشتباه است";
-                return false;
-            }
-            
-        $code = rand(100000, 999999);
-        $send_status = $this->model->send_sms($user_name, $code);
-        
-        if(!$send_status){
-            $_SESSION['error'] = "خطا در ارسال کد";
+
+        if(!preg_match('/^09\d{9}$/', $user_name)){
+            $_SESSION['error'] = "تلفن همراه وارد شده اشتباه است";
             return false;
         }
 
-        $_SESSION['pre_value'] = $user_name;
-        $_SESSION['success'] = "کد ارسال شد";
-        $_SESSION['send_time'] = time();
-        $_SESSION['code'] = $code;
+        if(empty($password)){
+            $_SESSION['error'] = "لطفا رمز عبور خود را وارد کنید.";
+            return false;
+        }
+
+        $user = $this->model->get_user($user_name);
+        if(empty($user)){
+            $_SESSION['error'] = "حساب کاربری با این شماره وجود ندارد.";
+            return false;
+        }
+        if(isset($user["password"]) && $user["password"] !== $password){
+            $_SESSION['error'] = "رمز عبور اشتباه است";
+            return false;
+        }
+        
+        $_SESSION['user_info'] = $user;
+        $this->model->log_login($user_name);
         return true;
     }
 
-    public function code_check($user_name, $pwd): bool{
-        // if session was not set
-        if(!isset($_SESSION['pre_value']) || !isset($_SESSION['code'])){
-            $_SESSION['error'] = "لطفا با یک مرورگر وارد شوید.";
+    public function add_user($phone, $name,  $password){
+
+        if(empty($phone)){
+            $_SESSION['error'] = "لطفا تلفن همراه خود را وارد کنید.";
             return false;
         }
-        if($user_name != $_SESSION['pre_value']){
-            $_SESSION['error'] = "شماره تلفن تغییر کرده است. لطفا مجددا کد را دریافت کنید.";
+        if(!preg_match('/^09\d{9}$/', $phone)){
+            $_SESSION['error'] = "تلفن همراه وارد شده اشتباه است";
             return false;
         }
-        if(empty($user_name) || empty($pwd)){
-            $_SESSION['error'] = "لطفا فیلد ها را تکمیل کنید.";
+        if(empty($name)){
+            $_SESSION['error'] = "لطفا نام خود را وارد کنید.";
             return false;
         }
-        if($pwd != $_SESSION['code']){
-            $_SESSION['error'] = "کدی که وارد کرده اید اشتباه است.";
+        if(empty($password)){
+            $_SESSION['error'] = "لطفا رمز عبور خود را وارد کنید.";
             return false;
         }
 
-        if ($pwd == $_SESSION['code']) {
-            $this->model->log_login($user_name);
+        if($this->model->add_user($phone, $name, $password)){
+            $_SESSION['user_info'] = $this->model->get_user($phone);
+            $this->model->log_login($phone);
             return true;
         }
 
+        return false;
+
     }
-    
-    public function set_sessions($user_name){
-        unset($_SESSION['code']);
-        unset($_SESSION['pre_value']);
-        unset($_SESSION['send_time']);
-        
-        $user = $this->model->get_user($user_name);
-        $_SESSION['user_info'] = $user;
-        return true;
+
+    public function change_pass($phone, $password, $password2){
+
+        if(empty($phone)){
+            $_SESSION['error'] = "لطفا تلفن همراه خود را وارد کنید.";
+            return false;
+        }
+        if(!preg_match('/^09\d{9}$/', $phone)){
+            $_SESSION['error'] = "تلفن همراه وارد شده اشتباه است";
+            return false;
+        }
+        if(empty($password) || empty($password2)){
+            $_SESSION['error'] = "لطفا رمز عبور خود را وارد کنید.";
+            return false;
+        }
+        if($password !== $password2){
+            $_SESSION['error'] = "تکرار رمز عبور تطابق ندارد.";
+            return false;
+        }
+        $user = $this->model->get_user($phone);
+        if(empty($user)){
+            $_SESSION['error'] = "حساب کاربری با این شماره وجود ندارد.";
+            return false;
+        }
+
+        if($this->model->change_pass($phone, $password)){
+            $_SESSION['error'] = "رمز عبور با موفقیت تغییر یافت.";
+            return true;
+        }
+        return false;
+
     }
+
 }
